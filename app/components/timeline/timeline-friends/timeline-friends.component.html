@@ -1,0 +1,57 @@
+<div id="page-contents">
+  <div class="container">
+    <div class="row">
+
+      <!-- Newsfeed Common Side Bar Left
+      ================================================= -->
+      <div class="col-md-3 static">
+        <div class="profile-card" *ngIf="signedUser$ | async as user">
+          <img src="{{user.profilePhotoUrl}}" alt="user" class="profile-photo" />
+          <h5><a href="timeline.html" class="text-white">{{user.userName}}</a></h5>
+          <a href="#" class="text-white"><i class="ion ion-android-person-add"></i> 1,299 followers</a>
+        </div>
+        <!--profile card ends-->
+        <app-timeline-sidebar [signedUser]="signedUser$ | async"></app-timeline-sidebar>
+        <div id="chat-block">
+          <div class="title">Chat online</div>
+         <app-timeline-chat-online></app-timeline-chat-online>
+        </div>
+        <!--chat block ends-->
+      </div>
+
+      <div class="col-md-7">
+
+        <!-- Post Create Box
+        ================================================= -->
+        <app-timeline-create-post></app-timeline-create-post>
+        <!-- Post Create Box End-->
+
+        <!-- Friend List
+        ================================================= -->
+        <div class="friend-list">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <div class="friend-card">
+                <img src="http://placehold.it/1030x360" alt="profile-cover" class="img-responsive cover" />
+                <div class="card-info">
+                  <img src="http://placehold.it/300x300" alt="user" class="profile-photo-lg" />
+                  <div class="friend-info">
+                    <a href="#" class="pull-right text-green">My Friend</a>
+                    <h5><a href="timeline.html" class="profile-link">Emre Ensar Çapcı</a></h5>
+                    <p>Student at Dogus Uni</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Newsfeed Common Side Bar Right
+      ================================================= -->
+      <div class="col-md-2 static">
+        <app-timeline-follow-user></app-timeline-follow-user>
+      </div>
+    </div>
+  </div>
+</div>

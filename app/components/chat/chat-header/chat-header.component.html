@@ -1,0 +1,13 @@
+<div class="chat-nav">
+  <div class="nav-start">
+    <div class="recipient-block" *ngIf="signedUser">
+      <div class="avatar-container">
+        <img class="user-avatar" src="{{signedUser.profilePhotoUrl}}" alt="">
+      </div>
+      <div class="username">
+        <span>{{signedUser.userName}}</span>
+        <span><i-feather name="Star"></i-feather> <span>| Online</span></span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+<div id="page-contents">
+  <div class="container">
+    <div class="row">
+
+      <!-- Newsfeed Common Side Bar Left
+      ================================================= -->
+      <div class="col-md-3 static">
+        <div class="profile-card" *ngIf="signedUser$ | async as user">
+          <img src="{{user.profilePhotoUrl}}" alt="user" class="profile-photo" />
+          <h5><a href="timeline.html" class="text-white">{{user.userName}}</a></h5>
+          <a href="#" class="text-white"><i class="ion ion-android-person-add"></i> 1,299 followers</a>
+        </div>
+        <!--profile card ends-->
+        <app-timeline-sidebar [signedUser]="signedUser$ | async"></app-timeline-sidebar>
+        <div id="chat-block">
+          <div class="title">Chat online</div>
+          <app-timeline-chat-online></app-timeline-chat-online>
+        </div>
+        <!--chat block ends-->
+      </div>
+
+      <div class="col-md-7">
+
+        <!-- Post Create Box
+        ================================================= -->
+        <app-timeline-create-post></app-timeline-create-post>
+        <!-- Post Create Box End-->
+
+        <!-- Nearby People List
+        ================================================= -->
+        <div class="people-nearby">
+          <div class="google-maps">
+            <button [disabled]="isTracking" class="btn btn-primary" (click)="findMe()">Find me</button>
+            <button class="btn btn-primary" (click)="trackMe()">Track me</button>
+            <div #gmap style="width:100%;height:300px"></div>
+          </div>
+          <div class="nearby-user">
+            <div class="row">
+              <div class="col-md-2 col-sm-2">
+                <img src="http://placehold.it/300x300" alt="user" class="profile-photo-lg" />
+              </div>
+              <div class="col-md-7 col-sm-7">
+                <h5><a href="#" class="profile-link">Sophia Page</a></h5>
+                <p>Software Engineer</p>
+                <p class="text-muted">500m away</p>
+              </div>
+              <div class="col-md-3 col-sm-3">
+                <button class="btn btn-primary pull-right">Add Friend</button>
+              </div>
+            </div>
+          </div>
+          <div class="nearby-user">
+            <div class="row">
+              <div class="col-md-2 col-sm-2">
+                <img src="http://placehold.it/300x300" alt="user" class="profile-photo-lg" />
+              </div>
+              <div class="col-md-7 col-sm-7">
+                <h5><a href="#" class="profile-link">Gökhan Akpınar</a></h5>
+                <p>Computer Engineer</p>
+                <p class="text-muted">800m away</p>
+              </div>
+              <div class="col-md-3 col-sm-3">
+                <button class="btn btn-primary pull-right">Add Friend</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Newsfeed Common Side Bar Right
+      ================================================= -->
+      <div class="col-md-2 static">
+        <app-timeline-follow-user></app-timeline-follow-user>
+      </div>
+    </div>
+  </div>
+</div>

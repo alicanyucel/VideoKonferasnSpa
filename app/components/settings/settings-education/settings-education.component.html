@@ -1,0 +1,74 @@
+<div class="col-md-7">
+  <!-- Edit Work and Education
+          ================================================= -->
+  <div class="edit-profile-container">
+    <div class="block-title">
+      <h4 class="grey">
+        <i class="icon ion-ios-book-outline"></i>My Education
+      </h4>
+      <div class="line"></div>
+      <p>You can edit your education informations !</p>
+      <div class="line"></div>
+    </div>
+    <div class="edit-block">
+       <!-- Education Form  -->
+      <form name="education" id="education" [formGroup]="educationForm" (ngSubmit)="updateEducationDetails()" class="form-inline">
+        <div class="row">
+          <div class="form-group col-xs-12">
+            <label for="school">My university</label>
+            <input id="school" class="form-control input-group-lg" type="text" name="universityName" title="Enter your university name !"
+            formControlName="universityName" [value]="signedUserDetails.universityName" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-xs-12">
+            <label for="edu-description">Description</label>
+            <textarea id="edu-description" name="universityDesc" class="form-control" placeholder="Text here..." rows="4"
+              cols="400" formControlName="universityDesc" [value]="signedUserDetails.universityDesc">
+            </textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-xs-12">
+            <label for="graduate">Graduated?:-</label>
+            <input id="graduate" type="checkbox" formControlName="hasGraduated" 
+            [value]="signedUserDetails.hasGraduated" name="hasGraduated" [checked]="signedUserDetails.hasGraduated" />
+          </div>
+        </div>
+        <button [disabled]="!educationForm.valid" class="btn btn-primary">Save Changes</button>
+      </form>
+      <!--  -->
+    </div>
+    <div class="block-title">
+      <h4 class="grey">
+        <i class="icon ion-ios-briefcase-outline"></i>Work Experiences
+      </h4>
+      <div class="line"></div>
+      <p>Edit your work experiences !</p>
+      <div class="line"></div>
+    </div>
+    <div class="edit-block">
+       <!-- Experience Form  -->
+      <form name="work" id="work" class="form-inline" [formGroup]="workExpForm" (ngSubmit)="updateExperienceDetails()">
+        <div class="row">
+          <div class="form-group col-xs-12">
+            <label for="company">Current Company I am working in</label>
+            <input id="company" class="form-control input-group-lg" formControlName="companyName"  type="text" name="companyName" 
+            title="Enter your current company you are working in !" [value]="signedUserDetails.companyName"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-xs-12">
+            <label for="designation">Designation</label>
+            <input id="designation" class="form-control input-group-lg" type="text" name="designation"
+              title="Enter your current position in the company !" formControlName="designation" 
+              [value]="signedUserDetails.designation"  />
+          </div>
+        </div>
+        <button [disabled]="!workExpForm.valid" class="btn btn-primary">Save Changes</button>
+      </form>
+      <!-- -->
+    </div>
+  </div>
+</div>

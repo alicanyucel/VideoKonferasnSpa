@@ -1,0 +1,65 @@
+<!--preloader-->
+<div *ngIf="isUpdatedData$ | async"> 
+  <div id="spinner-wrapper">
+    <div class="spinner"></div>
+  </div>
+</div>
+
+<div *ngIf="errorMessage$ | async as errorMessage" class="alert alert-danger">
+  Error: {{ errorMessage }}
+</div>
+
+<div class="container">
+  <!-- Timeline
+  ================================================= -->
+  <div class="timeline">
+
+    <app-settings-navbar [signedUser]="signedUser$ | async" [newPhoto]="isNewPhoto$ | async"
+      [newCover]="isNewCover$ | async">
+    </app-settings-navbar>
+
+    <div id="page-contents">
+      <div class="row">
+        <div class="col-md-3">
+          <app-settings-menu></app-settings-menu>
+        </div>
+
+        <app-settings-account 
+        *ngIf="activeUrl === '/settings/notifications'"
+        [signedUserDetails]="signedUserDetail$ | async">
+        </app-settings-account>
+
+        <app-settings-information 
+        *ngIf="activeUrl === '/settings/account'"
+        [signedUserDetails]="signedUserDetail$ | async"
+        (onUpdateBasic)="updateBasicInformations($event)">        
+        </app-settings-information>
+
+        <app-settings-interest 
+        *ngIf="activeUrl === '/settings/interest'"
+        [signedUserDetails]="signedUserDetail$ | async">
+        </app-settings-interest>
+
+        <app-settings-password
+        (onUpdatePassword)= "updateUserPassword($event)"
+        *ngIf="activeUrl === '/settings/password'"
+        [signedUserDetails]="signedUserDetail$ | async">
+        </app-settings-password>
+
+        <app-settings-education 
+        *ngIf="activeUrl === '/settings/education'"
+        [signedUserDetails]="signedUserDetail$ | async"
+        (onUpdateEducation)="updateEducation($event)"
+        (onUpdateExperience)="updateExperience($event)">
+        </app-settings-education>
+
+        <div class="col-md-2 static">
+          <app-settings-activitiy 
+          [signedUser]="signedUser$ | async"
+          [signedUserDetails]="signedUserDetail$ | async">
+          </app-settings-activitiy>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

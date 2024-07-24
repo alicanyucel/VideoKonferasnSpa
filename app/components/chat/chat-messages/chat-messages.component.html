@@ -1,0 +1,90 @@
+<!-- Chat body -->
+<div id="chat-body" class="chat-body is-opened">
+  <!-- Conversation with Dan -->
+  <div id="dan-conversation" class="chat-body-inner has-slimscroll">
+    <div class="date-divider">
+      <hr class="date-divider-line">
+      <span class="date-divider-text">Today</span>
+    </div>
+
+    <div *ngFor="let message of messages | orderBy : '-createdDate'">
+
+      <div class="chat-message is-sent" *ngIf="message.senderId != signedUser.userId">
+        <img src="{{message.profilePhotoUrl}}" title="Go to {{message.senderName}}'s profile'" alt="">
+        <div class="message-block">
+          <span>{{message.createdDate | date:'short' }}</span>
+          <div class="message-text">{{message.text}}</div>
+        </div>
+      </div>
+
+      <div class="chat-message is-received" *ngIf="message.senderId === signedUser.userId">
+        <img src="{{message.profilePhotoUrl}}" title="Go to {{message.senderName}}'s profile'" alt="">
+        <div class="message-block">
+          <span>{{message.createdDate | date:'short' }}</span>
+          <div class="message-text">{{message.text}}</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Compose message area -->
+  <div class="chat-action">
+    <div class="chat-action-inner">
+      <div class="control">
+        <textarea [(ngModel)]="txtMessage" class="textarea comment-textarea" rows="1"></textarea>
+        <div class="dropdown compose-dropdown is-spaced is-accent is-up dropdown-trigger">
+          <div>
+            <div class="add-button">
+              <div (click)="sendMsg()" class="button-inner">
+                <i-feather name="plus"></i-feather>
+              </div>
+            </div>
+          </div>
+          <div class="dropdown-menu" role="menu">
+            <div class="dropdown-content">
+              <a href="#" class="dropdown-item">
+                <div class="media">
+                  <i-feather name="code"></i-feather>
+                  <div class="media-content">
+                    <h3>Code snippet</h3>
+                    <small>Add and paste a code snippet.</small>
+                  </div>
+                </div>
+              </a>
+              <a class="dropdown-item">
+                <div class="media">
+                  <i-feather name="file-text"></i-feather>
+                  <div class="media-content">
+                    <h3>Note</h3>
+                    <small>Add and paste a note.</small>
+                  </div>
+                </div>
+              </a>
+              <hr class="dropdown-divider">
+              <a class="dropdown-item">
+                <div class="media">
+                  <i-feather name="server"></i-feather>
+                  <div class="media-content">
+                    <h3>Remote file</h3>
+                    <small>Add a file from a remote drive.</small>
+                  </div>
+                </div>
+              </a>
+              <a class="dropdown-item">
+                <div class="media">
+                  <i-feather name="monitor"></i-feather>
+                  <div class="media-content">
+                    <h3>Local file</h3>
+                    <small>Add a file from your computer.</small>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

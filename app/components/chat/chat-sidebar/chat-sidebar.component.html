@@ -1,0 +1,21 @@
+<!-- Chat sidebar -->
+<div id="chat-sidebar" class="users-sidebar">
+  <!-- Header -->
+  <a routerLink="/timeline" class="header-item">
+  </a>
+  <!-- User list -->
+  <div class="conversations-list has-slimscroll-xs">
+    <!-- User -->
+    <div class="user-item" *ngFor="let group of groupUsers">
+      <div class="avatar-container">
+        <img class="user-avatar" (click)="selectUser(group)" title="Chat with {{group.userName}}" src="{{group.profilePhotoUrl}}" alt=""/>
+      </div>
+    </div>
+
+  </div>
+  <!-- Add Conversation -->
+  <div class="footer-item">
+    <div class="add-button modal-trigger" data-modal="add-conversation-modal"><i-feather name="user"></i-feather> 
+    </div>
+  </div>
+</div>
